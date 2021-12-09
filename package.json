@@ -1,7 +1,7 @@
 {
-  "name": "practicando-vistas",
+  "name": "prisma_orm_xarxatec",
   "version": "1.0.0",
-  "description": "mi proyecto con Handlebars",
+  "description": "Migrate old project to TypeScript and add Prisma ORM",
   "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
     "handlebars",
     "express"
   ],
-  "author": "Jano Soler",
+  "author": "Manuel Leon Xarxatec Activa",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.6.0",
