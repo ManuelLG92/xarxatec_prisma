@@ -1,3 +1,6 @@
 <p>
     Test {{ hello }}
 </p>
+{{#each posts as |post|}}
+    <p>{{post.id}} - {{post.title}}</p>
+{{/each}}

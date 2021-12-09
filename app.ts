@@ -1,21 +1,18 @@
 import express from 'express';
 import path from 'path';
-
 const expressHandlebars = require('express-handlebars');
 import router from "./routes/routes";
 
 const app:express.Application = express();
 
-
 app.set('views', path.join(__dirname, 'views'))
-
-const hbs = expressHandlebars.create({extname: '.hbs',
-layoutsDir: path.join(app.get('views'), 'layouts'),
-partialsDir: path.join(app.get('views'), 'partials'),
-defaultLayout: "main",});
-
-app.engine('.hbs', hbs.engine);
-
+console.log('direname', __dirname)
+app.engine('.hbs', expressHandlebars.create({  
+    extname: '.hbs',
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    partialsDir: path.join(app.get('views'), 'partials'),
+    defaultLayout: "main",
+    }).engine);
 
 app.set('view cache', true);
 app.set('view engine', '.hbs')
