@@ -4,6 +4,7 @@ const router = express.Router();
 //const controlador = require("../build/controlador.js");
 
 router.get("/", async (req, res, next)=>{
+    //await Main();
     res.redirect('/indice.html')
     //await Main();
     //res.sendFile(path.join(__dirname, '..', 'public', 'indice.html'));

@@ -6,7 +6,7 @@ import router from "./routes/routes";
 const app:express.Application = express();
 
 app.set('views', path.join(__dirname, 'views'))
-console.log('direname', __dirname)
+
 app.engine('.hbs', expressHandlebars.create({  
     extname: '.hbs',
     layoutsDir: path.join(app.get('views'), 'layouts'),
