@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 const expressHandlebars = require('express-handlebars');
 import router from "./routes/routes";
-
+const methodOverride = require('method-override');
 const app:express.Application = express();
 
 app.set('views', path.join(__dirname, 'views'))
@@ -18,6 +18,7 @@ app.set('view cache', true);
 app.set('view engine', '.hbs')
 
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 app.use(express.static(path.join( __dirname, 'public')));
 
