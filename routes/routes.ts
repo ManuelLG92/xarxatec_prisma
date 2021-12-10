@@ -1,23 +1,25 @@
 import express from 'express';
-import { Main, getAllPosts } from '../services';
+import { getAllPosts, getAllStudents, addStudent, Student } from '../services';
 const router = express.Router();
-//const controlador = require("../build/controlador.js");
 
 router.get("/", async (req, res, next)=>{
-    //await Main();
-    res.redirect('/indice.html')
-    //await Main();
-    //res.sendFile(path.join(__dirname, '..', 'public', 'indice.html'));
+    console.log('students', await getAllStudents())
 })
-
-//router.get("/usuarios", controlador.datosUsuarios);
 
 router.get("/test", async (request, response) => {
     const posts = await getAllPosts();
-    response.render("test", { hello: "Hello Manuel", posts})
+    response.render("newStudent", { hello: "Hello Manuel", posts})
 });
 
-//router.post("/alta", controlador.insertaUsuario);
+router.get("/new-student", async (request, response) => {
+    response.render("newStudent")
+});
+
+router.post("/new-student", async (request, response) => {
+    let student: Student = (request.body as Student);
+    student = await addStudent(student);
+    response.render("student", { student })
+});
 
 export default router;
-//module.exports = router;
+

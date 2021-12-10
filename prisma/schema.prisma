@@ -30,8 +30,10 @@ model Student {
   email             String  @unique
   phone             String  @unique
   description       String
-  image             String
+  image             String?
   education         Education[]
+  expPoints         XpPoints[]
+  experience        Experience[]
 }
 
 model Education {
@@ -45,32 +47,38 @@ model Education {
   student           Student @relation(fields: [studentId], references: [id])
   studentId         Int
   regulated         Boolean @default(false)
+  educationTechnology EducationOnTecnologies[]
 }
 
-model Tecnology {
-  id       Int      @id @default(autoincrement())
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  name     String
+model Technology {
+  id                  Int      @id @default(autoincrement())
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  name                String
+  educationTechnology  EducationOnTecnologies[]
+  experienceTechnology ExperienceOnTecnologies[]
+  expPoints           XpPoints[]
 }
 
 model EducationOnTecnologies {
   id                Int      @id @default(autoincrement())
   education         Education @relation(fields: [educationId], references: [id])
   educationId       Int
-  tecnology         Tecnology @relation(fields: [tecnologyId], references: [id])
-  tecnologyId       Int
+  Technology         Technology @relation(fields: [TechnologyId], references: [id])
+  TechnologyId       Int
 }
 
 model Experience {
-  id                Int      @id @default(autoincrement())
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  company           String
-  startedAt         DateTime
-  endedAt           DateTime
-  student           Student @relation(fields: [studentId], references: [id])
-  studentId         Int
+  id                    Int      @id @default(autoincrement())
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  company               String
+  startedAt             DateTime
+  endedAt               DateTime
+  student               Student @relation(fields: [studentId], references: [id])
+  studentId             Int
+  experienceTechnology   ExperienceOnTecnologies[]
+
 }
 
 model ExperienceOnTecnologies {
@@ -79,17 +87,17 @@ model ExperienceOnTecnologies {
   updatedAt         DateTime @updatedAt
   experience        Experience @relation(fields: [experienceId], references: [id])
   experienceId      Int
-  tecnology         Tecnology @relation(fields: [tecnologyId], references: [id])
-  tecnologyId       Int
+  Technology         Technology @relation(fields: [TechnologyId], references: [id])
+  TechnologyId       Int
 }
 
-model xpPoints {
+model XpPoints {
   id                Int      @id @default(autoincrement())
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   student           Student @relation(fields: [studentId], references: [id])
   studentId         Int
-  tecnology         Tecnology @relation(fields: [tecnologyId], references: [id])
-  tecnologyId       Int
+  Technology         Technology @relation(fields: [TechnologyId], references: [id])
+  TechnologyId       Int
   points            Int
 }
